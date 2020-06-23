@@ -32,11 +32,7 @@
         <div class="col text-center">
           <div class="card">
             <h5 class="card-title mt-2">Current Reservations</h5>
-            <ul class="list-group list-group-flush" id="current">
-              <li class="list-group-item">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
+            <ul class="list-group list-group-flush" id="current"></ul>
           </div>
         </div>
       </div>
@@ -66,24 +62,25 @@
     ></script>
     <script>
       $.get('/api/tables/', (data) => {
-        let i = 0;
-        data.forEach((el) => {
-          i++;
+        console.log(data);
+        for (let i = 0; i < data.length; i++) {
+          el = data[i];
           const listEl = $('li').addClass('list-group-item');
           const listText = `${i}. ${el.id}`;
           listEl.text(listText);
           $('#current').append(listEl);
-        });
-        $.get('/api/waitlist/', (data => {
-          let i = 0;
-          data.forEach((el) => {
-            i++;
+        }
+      });
+      $.get('/api/waitlist/', (data) => {
+        console.log(data);
+        for (let i = 0; i < data.length; i++) {
+          el = data[i];
           const listEl = $('li').addClass('list-group-item');
           const listText = `${i}. ${el.id}`;
           listEl.text(listText);
-          $('#waitList').append(listEl);
-          });
-      })
+          $('#current').append(listEl);
+        }
+      });
     </script>
   </body>
 </html>
