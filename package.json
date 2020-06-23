@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/mcraepv/reservation-app/issues"
   },
-  "homepage": "https://github.com/mcraepv/reservation-app#readme"
+  "homepage": "https://github.com/mcraepv/reservation-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
