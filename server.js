@@ -14,7 +14,6 @@ app.use(express.json());
 
 var reservations = [];
 
-var waitingList = [];
 
 // Routes
 // =============================================================
@@ -30,6 +29,20 @@ app.get("/tables", function (req, res) {
 
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"))
+});
+
+// Displays table reservations
+app.get("/api/tables", function (req, res) {
+    var tables = reservations.slice().splice(0, 5);
+    return res.json(tables);
+});
+
+// Displays waitlist reservations
+app.get("/api/waitlist", function (req, res) {
+    if (reservations.length <= 5)
+        return res.json(false);
+    var waitlist = reservations.slice().splice(5);
+    return res.json(waitlist);
 });
 
 // Starts the server to begin listening
