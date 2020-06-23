@@ -45,6 +45,19 @@ app.get("/api/waitlist", function (req, res) {
     return res.json(waitlist);
 });
 
+// Create New Reservations - takes in JSON input
+app.post("/api/tables", function(req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    var newReservation = req.body;
+
+    console.log(newReservation);
+
+    reservations.push(newReservation);
+
+    res.json(newReservation);
+});
+
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function () {
