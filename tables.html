@@ -61,26 +61,30 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      $.get('/api/tables/', (data) => {
-        console.log(data);
-        for (let i = 0; i < data.length; i++) {
-          el = data[i];
-          const listEl = $('li').addClass('list-group-item');
-          const listText = `${i}. ${el.id}`;
-          listEl.text(listText);
+      async function getList() {
+        const tables = await $.get('/api/tables/');
+        for (let i = 0; i < tables.length; i++) {
+          el = tables[i];
+          console.log(i);
+          const id = el.id;
+          const position = i + 1;
+          const text = position + '. ' + id;
+          const listEl = $('<li>').addClass('list-group-item');
+          listEl.text(`${position}. ${id}`);
           $('#current').append(listEl);
         }
-      });
-      $.get('/api/waitlist/', (data) => {
-        console.log(data);
-        for (let i = 0; i < data.length; i++) {
-          el = data[i];
-          const listEl = $('li').addClass('list-group-item');
-          const listText = `${i}. ${el.id}`;
-          listEl.text(listText);
-          $('#current').append(listEl);
+        const waitlist = await $.get('/api/waitlist/');
+        console.log(waitlist);
+        for (let i = 0; i < waitlist.length; i++) {
+          el = waitlist[i];
+          const id = el.id;
+          const position = i + 1;
+          const listEl = $('<li>').addClass('list-group-item');
+          listEl.text(`${position}. ${el.id}`);
+          $('#waitList').append(listEl);
         }
-      });
+      }
+      getList();
     </script>
   </body>
 </html>

@@ -85,19 +85,21 @@
           email: $('#email').val().trim(),
           id: $('#id').val().trim(),
         };
-        let numberOfResos = 0;
+        let numberOfResos;
         $.get('/api/tables').then(function (data) {
           numberOfResos = data.length;
+          console.log(data);
+          console.log(numberOfResos);
+          if (numberOfResos < 5) {
+            $.post('/api/tables', newTable).then(() => {
+              alert('Success! Making your reservation!');
+            });
+          } else {
+            $.post('/api/tables', newTable).then(() => {
+              alert('Sorry, you are on the waitlist.');
+            });
+          }
         });
-        if (numberOfResos < 5) {
-          $.post('/api/tables', newTable).then(() => {
-            alert('Success! Making your reservation!');
-          });
-        } else {
-          $.post('/api/waitlist', newTable).then(() => {
-            alert('Sorry, you are on the waitlist.');
-          });
-        }
       });
     </script>
   </body>
