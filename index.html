@@ -9,22 +9,35 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="https://kit.fontawesome.com/c502137733.js"></script>
+    <title>Hot Restaurant</title>
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col">
           <div class="jumbotron text-center">
-            <h1 class="display-4 text-center">Hot Restaurant</h1>
+            <h1 class="display-4 text-center">
+              <i class="fas fa-fire-alt"></i> Hot Restaurant
+            </h1>
             <p class="lead">
               We only have 5 tables! Book your seat before they all are gone!
             </p>
             <hr class="my-4" />
-            <a class="btn btn-primary btn-lg" href="/tables" role="button"
+            <a
+              class="btn btn-lg btn-primary"
+              href="/tables"
+              role="button"
+              id="viewBtn"
               >View Tables</a
             >
-            <a class="btn btn-primary btn-lg" href="/reserve" role="button"
+            <a
+              class="btn btn-lg btn-primary"
+              href="/reserve"
+              role="button"
+              id="makeBtn"
               >Make Reservation</a
             >
           </div>

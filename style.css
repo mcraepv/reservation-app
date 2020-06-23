@@ -1,0 +1,9 @@
+#makeBtn {
+  background-color: #ce2609 !important;
+}
+
+#makeBtn,
+#viewBtn,
+#homeBtn {
+  box-shadow: 2px 3px 5px grey;
+}

@@ -9,22 +9,36 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="https://kit.fontawesome.com/c502137733.js"></script>
+    <title>Make a Reservation</title>
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col">
           <div class="jumbotron text-center">
-            <h1 class="display-4 text-center">Hot Restaurant</h1>
+            <h1 class="display-4 text-center">
+              <i class="fas fa-fire-alt"></i> Hot Restaurant
+            </h1>
             <p class="lead">
-              We only have 5 tables! Book your seat before they all are gone!
+              Make a reservation!
             </p>
             <hr class="my-4" />
-            <a class="btn btn-primary btn-lg" href="/tables" role="button"
+            <a
+              class="btn btn-lg btn-primary"
+              href="/tables"
+              role="button"
+              id="viewBtn"
               >View Tables</a
             >
-            <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
+            <a
+              class="btn btn-lg btn-primary"
+              href="/"
+              role="button"
+              id="homeBtn"
+              ><i class="fas fa-home"></i
+            ></a>
           </div>
           <div class="row">
             <div class="col text-center">
@@ -47,11 +61,7 @@
                     <label for="phone number">Unique ID</label>
                     <input type="text" class="form-control" id="id" />
                   </div>
-                  <button
-                    type="submit"
-                    class="btn btn-primary mb-3"
-                    id="submitBtn"
-                  >
+                  <button type="submit" class="btn mb-3" id="submitBtn">
                     Submit
                   </button>
                 </form>
@@ -85,19 +95,14 @@
           email: $('#email').val().trim(),
           id: $('#id').val().trim(),
         };
-        let numberOfResos;
-        $.get('/api/tables').then(function (data) {
-          numberOfResos = data.length;
-          console.log(data);
-          console.log(numberOfResos);
-          if (numberOfResos < 5) {
-            $.post('/api/tables', newTable).then(() => {
-              alert('Success! Making your reservation!');
-            });
-          } else {
-            $.post('/api/tables', newTable).then(() => {
-              alert('Sorry, you are on the waitlist.');
-            });
+        $.post('/api/tables', newTable).then(() => {
+          try {
+            $('#name').val('');
+            $('#number').val('');
+            $('#email').val('');
+            $('#id').val('');
+          } catch (err) {
+            console.log(err);
           }
         });
       });
